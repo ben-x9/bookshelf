@@ -13,7 +13,7 @@ export default function useAddBook() {
 
       // Optimistically update to the new value
       queryClient.setQueryData(["books"], (prev?: Book[]) =>
-        prev ? [newBook, ...prev] : [newBook]
+        prev ? [...prev, newBook] : [newBook]
       )
 
       // Return a context object with the snapshotted value
