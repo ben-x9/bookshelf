@@ -6,8 +6,13 @@
   margin-bottom: 79px;
 }
 
-.Add main {
+.Add form {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 100%;
   gap: 50px;
+  --error-color: #ff0000;
 }
 
 .Add label {
@@ -18,4 +23,29 @@
 .Add textarea {
   width: 100%;
   margin-top: 9px;
+}
+
+.Add .error-message {
+  color: var(--error-color);
+  margin-top: 9px;
+  font-style: italic;
+}
+
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible {
+  outline: 2px solid #61c38c;
+}
+
+input.error,
+textarea.error {
+  border: 2px solid var(--error-color);
+}
+
+input:focus.error,
+input:focus-visible.error,
+textarea:focus.error,
+textarea:focus-visible.error {
+  outline: 0.5px solid var(--error-color);
 }
