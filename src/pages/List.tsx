@@ -4,6 +4,7 @@ import Book from "../models/book"
 import { useNavigate } from "react-router-dom"
 import Spinner from "../components/Spinner"
 import useBooks from "../hooks/useBooks"
+import useDeleteBook from "../hooks/useDeleteBook"
 
 export const noBooksMessage = "No books on this shelf..."
 
@@ -33,14 +34,24 @@ export default function List() {
   )
 }
 
-const BookCard = (book: Book) => (
-  <li className="book-card">
-    <img className="cover" src={book.imageUrl} alt="Book cover" />
-    <div className="info">
-      <h3>{book.title}</h3>
-      <h4>{book.author}</h4>
-      <p>{book.description}</p>
-    </div>
-    <img className="trash-can" src={trashCan} alt="Trash can"></img>
-  </li>
-)
+const BookCard = (book: Book) => {
+  const deleteBook = useDeleteBook()
+  return (
+    <li className="book-card">
+      <img className="cover" src={book.imageUrl} alt="Book cover" />
+      <div className="info">
+        <h3>{book.title}</h3>
+        <h4>{book.author}</h4>
+        <p>{book.description}</p>
+      </div>
+      <img
+        className="trash-can"
+        src={trashCan}
+        alt="Trash can"
+        role="button"
+        aria-label="delete"
+        onClick={() => deleteBook(book)}
+      />
+    </li>
+  )
+}
