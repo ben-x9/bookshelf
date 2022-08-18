@@ -18,6 +18,6 @@ git checkout -B main
 git add -A
 git commit -m 'deploy'
 
-git push -f git@github.com:ben-x9/bookshelf.git main:gh-pages
+git push -f git@github.com:ben-x9/mmhmm-books-ben-x9.git main:gh-pages
 
 cd -

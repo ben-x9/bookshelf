@@ -2,7 +2,7 @@
 
 ## View here
 
-https://ben-x9.github.io/bookshelf/
+https://ben-x9.github.io/mmhmm-books-ben-x9/
 
 ## To install and run
 
