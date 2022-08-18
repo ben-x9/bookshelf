@@ -5,6 +5,8 @@ import { useNavigate } from "react-router-dom"
 import Spinner from "../components/Spinner"
 import useBooks from "../hooks/useBooks"
 
+export const noBooksMessage = "No books on this shelf..."
+
 export default function List() {
   const navigate = useNavigate()
   const { isLoading, error, data: books } = useBooks()
@@ -20,8 +22,10 @@ export default function List() {
             <Spinner />
           ) : error ? (
             <div className="error-message">{error.message}</div>
+          ) : !books || books.length === 0 ? (
+            <div className="no-books">{noBooksMessage}</div>
           ) : (
-            books?.map((book, i) => <BookCard key={i} {...book} />)
+            books.map(book => <BookCard key={book.id} {...book} />)
           )}
         </ul>
       </main>

@@ -1,8 +1,8 @@
 import { getByText, queryByText, render, screen } from "@testing-library/react"
 import userEvent from "@testing-library/user-event"
 import "@testing-library/jest-dom"
-import List from "./List"
-import useBooks, { failedToFetchBooks } from "../hooks/useBooks"
+import List, { noBooksMessage } from "./List"
+import useBooks, { failedToFetchBooksMessage } from "../hooks/useBooks"
 import { QueryClient, QueryClientProvider } from "react-query"
 import { ReactNode } from "react"
 import { BrowserRouter } from "react-router-dom"
@@ -40,11 +40,22 @@ describe("List", () => {
 
   test("Shows a message on error loading", async () => {
     mockedUseBooks.mockImplementation(() => ({
-      error: new Error(failedToFetchBooks),
+      error: new Error(failedToFetchBooksMessage),
     }))
     render(<List />, { wrapper })
 
-    expect(await screen.getByText(failedToFetchBooks)).toBeInTheDocument()
+    expect(
+      await screen.getByText(failedToFetchBooksMessage)
+    ).toBeInTheDocument()
+  })
+
+  test("Displays message when there are no books", async () => {
+    mockedUseBooks.mockImplementation(() => ({
+      data: [],
+    }))
+    render(<List />, { wrapper })
+
+    expect(await screen.getByText(noBooksMessage)).toBeInTheDocument()
   })
 
   test("Displays loaded books", async () => {

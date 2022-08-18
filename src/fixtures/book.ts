@@ -9,4 +9,9 @@ export const book: Book = {
   imageUrl: "https://picsum.photos/125/200",
 }
 
-export const books = [book, book, book, book]
+export const books = [
+  book,
+  { ...book, id: "2" },
+  { ...book, id: "3" },
+  { ...book, id: "4" },
+]
