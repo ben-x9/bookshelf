@@ -1,0 +1,21 @@
+.Add {
+  width: 564px;
+}
+
+.Add header {
+  margin-bottom: 79px;
+}
+
+.Add main {
+  gap: 50px;
+}
+
+.Add label {
+  min-width: 100%;
+}
+
+.Add input,
+.Add textarea {
+  width: 100%;
+  margin-top: 9px;
+}

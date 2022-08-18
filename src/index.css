@@ -58,6 +58,7 @@ button {
   border: 2px solid transparent;
   padding: 14px 22px;
   box-sizing: border-box;
+  color: white;
   font-size: 18px;
   font-weight: 700;
   font-family: inherit;
@@ -70,5 +71,39 @@ button:hover {
 }
 button:focus,
 button:focus-visible {
+  outline: 2px solid #61c38c;
+}
+
+label {
+  font-family: SF Pro Display, sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 1.2;
+}
+
+input,
+textarea {
+  font-family: sans-serif;
+  font-size: 14px;
+  border: 1px solid #000000;
+  border-radius: 4px;
+  padding: 14px 12px;
+  background-color: #fff;
+}
+
+input {
+  height: 50px;
+  box-sizing: border-box;
+}
+
+textarea {
+  height: 109px;
+  box-sizing: border-box;
+}
+
+input:focus,
+input:focus-visible,
+textarea:focus,
+textarea:focus-visible {
   outline: 2px solid #61c38c;
 }
