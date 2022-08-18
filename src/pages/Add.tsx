@@ -10,7 +10,12 @@ export default function Add() {
     <div className="Add">
       <header>
         <h1>Add a new book</h1>
-        <img onClick={() => navigate("/")} src="cross.svg" role="button" />
+        <img
+          onClick={() => navigate("/")}
+          src="cross.svg"
+          role="button"
+          aria-label="close"
+        />
       </header>
       <main>
         <BookForm />
