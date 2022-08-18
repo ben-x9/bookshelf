@@ -12,7 +12,6 @@
   align-items: flex-start;
   min-width: 100%;
   gap: 50px;
-  --error-color: #ff0000;
 }
 
 .Add label {

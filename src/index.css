@@ -29,6 +29,7 @@ body {
   display: flex;
   min-width: 320px;
   min-height: 100vh;
+  --error-color: #ff0000;
 }
 
 h1 {

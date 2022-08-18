@@ -2,6 +2,7 @@ import { Field, Form, FormikErrors, FormikProps, withFormik } from "formik"
 import "./Add.css"
 import { isUri } from "valid-url"
 import { useNavigate } from "react-router-dom"
+import cross from "../assets/cross.svg"
 
 export default function Add() {
   const navigate = useNavigate()
@@ -12,7 +13,7 @@ export default function Add() {
         <h1>Add a new book</h1>
         <img
           onClick={() => navigate("/")}
-          src="cross.svg"
+          src={cross}
           role="button"
           aria-label="close"
         />

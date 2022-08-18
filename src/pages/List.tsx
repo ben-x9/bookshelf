@@ -1,43 +1,42 @@
 import "./List.css"
+import trashCan from "../assets/trash-can.svg"
 import Book from "../models/book"
 import { useNavigate } from "react-router-dom"
-
-const book: Book = {
-  id: "1",
-  title: "The Lord of the Rings",
-  author: "J.R.R. Tolkien",
-  description:
-    "The Lord of the Rings is the saga of a group of sometimes reluctant heroes who set forth to save their world from consummate evil. Its many worlds and creatures were drawn from Tolkien's extensive knowledge of philology and folklore.",
-  imageUrl: "https://picsum.photos/125/200",
-}
-
-const books = [book, book, book, book]
+import Spinner from "../components/Spinner"
+import useBooks from "../hooks/useBooks"
 
 export default function List() {
   const navigate = useNavigate()
+  const { isLoading, error, data: books } = useBooks()
   return (
-    <div>
+    <div className="List">
       <header>
         <h1>Bookshelf</h1>
         <button onClick={() => navigate("/add")}>Add book</button>
       </header>
       <main>
-        {books.map((book, i) => (
-          <BookCard key={i} {...book} />
-        ))}
+        <ul>
+          {isLoading ? (
+            <Spinner />
+          ) : error ? (
+            <div className="error-message">{error.message}</div>
+          ) : (
+            books?.map((book, i) => <BookCard key={i} {...book} />)
+          )}
+        </ul>
       </main>
     </div>
   )
 }
 
 const BookCard = (book: Book) => (
-  <div className="book-card">
+  <li className="book-card">
     <img className="cover" src={book.imageUrl} alt="Book cover" />
     <div className="info">
       <h3>{book.title}</h3>
       <h4>{book.author}</h4>
       <p>{book.description}</p>
     </div>
-    <img className="trash-can" src="trash-can.svg" alt="Trash can"></img>
-  </div>
+    <img className="trash-can" src={trashCan} alt="Trash can"></img>
+  </li>
 )

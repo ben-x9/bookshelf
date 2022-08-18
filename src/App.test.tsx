@@ -3,8 +3,20 @@ import userEvent from "@testing-library/user-event"
 import "@testing-library/jest-dom"
 import App from "./App"
 import { BrowserRouter, MemoryRouter } from "react-router-dom"
+import useBooks from "./hooks/useBooks"
+
+const mockedUseBooks = useBooks as jest.Mock<any>
+jest.mock("./hooks/useBooks")
 
 describe("App", () => {
+  beforeEach(() => {
+    mockedUseBooks.mockImplementation(() => ({ isLoading: true }))
+  })
+
+  afterEach(() => {
+    jest.clearAllMocks()
+  })
+
   test("Renders correctly", async () => {
     render(<App />, { wrapper: BrowserRouter })
 
