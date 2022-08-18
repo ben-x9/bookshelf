@@ -1,13 +1,16 @@
 import { Field, Form, FormikErrors, FormikProps, withFormik } from "formik"
 import "./Add.css"
 import { isUri } from "valid-url"
+import { useNavigate } from "react-router-dom"
 
 export default function Add() {
+  const navigate = useNavigate()
+
   return (
     <div className="Add">
       <header>
         <h1>Add a new book</h1>
-        <img src="cross.svg" />
+        <img onClick={() => navigate("/")} src="cross.svg" role="button" />
       </header>
       <main>
         <BookForm />
