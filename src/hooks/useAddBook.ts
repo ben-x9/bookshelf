@@ -34,6 +34,7 @@ export default function useAddBook() {
 }
 
 const postBook = async (book: Book) => {
+  const { id, ...body } = book
   const response = await fetch(
     "https://us-central1-all-turtles-interview.cloudfunctions.net/books",
     {
@@ -43,7 +44,7 @@ const postBook = async (book: Book) => {
         Authorization: "Basic benjaminjames",
       },
       method: "POST",
-      body: JSON.stringify(book),
+      body: JSON.stringify(body),
     }
   )
   if (!response.ok) throw new Error("Failed to post new book!")
