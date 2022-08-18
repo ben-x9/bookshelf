@@ -117,7 +117,11 @@ const BookForm = withFormik<
       errors.author = "Required"
     } else if (!values.description) {
       errors.description = "Required"
-    } else if (!isUri(values.imageUrl) && !values.imageUrl.endsWith(".jpg")) {
+    } else if (
+      !isUri(values.imageUrl) &&
+      !values.imageUrl.endsWith(".jpg") &&
+      !values.imageUrl.endsWith(".png")
+    ) {
       errors.imageUrl = "Invalid image URL"
     }
     return errors

@@ -1,3 +1,4 @@
+import { sort } from "fast-sort"
 import { useMutation } from "react-query"
 import { queryClient } from "../App"
 import Book from "../models/book"
@@ -13,7 +14,7 @@ export default function useAddBook() {
 
       // Optimistically update to the new value
       queryClient.setQueryData(["books"], (prev?: Book[]) =>
-        prev ? [...prev, newBook] : [newBook]
+        prev ? sort([...prev, newBook]).asc(book => book.title) : [newBook]
       )
 
       // Return a context object with the snapshotted value

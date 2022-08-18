@@ -1,5 +1,6 @@
 import { useQuery } from "react-query"
 import Book from "../models/book"
+import { sort } from "fast-sort"
 
 export const failedToFetchBooksMessage = "Failed to fetch books!"
 
@@ -18,5 +19,6 @@ const fetchBooks = async () => {
     }
   )
   if (!response.ok) throw new Error(failedToFetchBooksMessage)
-  return await response.json()
+  const json: Book[] = await response.json()
+  return sort(json).asc(book => book.title)
 }
