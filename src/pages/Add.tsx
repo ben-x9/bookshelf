@@ -3,9 +3,16 @@ import "./Add.css"
 import { isUri } from "valid-url"
 import { useNavigate } from "react-router-dom"
 import cross from "../assets/cross.svg"
+import useAddBook from "../hooks/useAddBook"
+import Book from "../models/book"
 
 export default function Add() {
   const navigate = useNavigate()
+  const addBook = useAddBook()
+  const addBookAndNavigate = (book: BookFormValues) => {
+    addBook(book)
+    navigate("/")
+  }
 
   return (
     <div className="Add">
@@ -19,18 +26,13 @@ export default function Add() {
         />
       </header>
       <main>
-        <BookForm />
+        <BookForm addBook={addBookAndNavigate} />
       </main>
     </div>
   )
 }
 
-interface BookFormValues {
-  title: string
-  author: string
-  description: string
-  imageUrl: string
-}
+type BookFormValues = Omit<Book, "id">
 
 const InnerForm = (props: FormikProps<BookFormValues>) => {
   const { touched, errors, isSubmitting } = props
@@ -96,7 +98,10 @@ const BookField = ({
   )
 }
 
-const BookForm = withFormik<{}, BookFormValues>({
+const BookForm = withFormik<
+  { addBook: (book: BookFormValues) => void },
+  BookFormValues
+>({
   mapPropsToValues: () => ({
     title: "",
     author: "",
@@ -119,7 +124,7 @@ const BookForm = withFormik<{}, BookFormValues>({
   },
 
   handleSubmit: (values, actions) => {
-    confirm(JSON.stringify(values, null, 2))
+    actions.props.addBook(values)
     actions.setSubmitting(false)
     actions.resetForm()
   },
